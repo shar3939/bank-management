@@ -1,0 +1,21 @@
+<div class="jumbotron" style="text-align: center; ">
+  <h2>Welcome to Bank Management & Forex Services</h2>
+</div>
+
+
+
+
+<div *ngIf="account" class="accounts">
+  Welcome Back - <span style="font-weight: bold"> {{account.firstName | uppercase}}</span> <br>
+  <br>
+  <hr>
+  <div style="text-align: center">
+    Your current Balance is - <span style="font-weight: bold">{{account.balance | currency: 'INR':true}}</span>
+  </div>
+  <hr>
+</div>
+
+<div style="text-align: center">
+  <button class="btn btn-success" routerLink="/deposit"> Deposit Money </button> &nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary" routerLink="/payments"> Funds Transfer </button>
+</div>
