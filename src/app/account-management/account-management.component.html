@@ -2,11 +2,14 @@
   <h2>Welcome to Bank Management & Forex Services</h2>
 </div>
 
-
+<div style="text-align: center">
+    <a  routerLink="/">Home</a>
+  </div>
 
 
 <div *ngIf="account" class="accounts">
-  Welcome Back - <span style="font-weight: bold"> {{account.firstName | uppercase}}</span> <br>
+  Welcome Back - <span style="font-weight: bold"> {{account.firstName | uppercase}}, {{account.lastName | uppercase}}</span> - 
+  Account Number <span style="font-weight: bold">{{account.accountId}}</span> <br>
   <br>
   <hr>
   <div style="text-align: center">
@@ -17,5 +20,5 @@
 
 <div style="text-align: center">
   <button class="btn btn-success" routerLink="/deposit"> Deposit Money </button> &nbsp;&nbsp;&nbsp;
-  <button class="btn btn-primary" routerLink="/payments"> Funds Transfer </button>
+  <button class="btn btn-primary" [routerLink]="['/payments', account.accountId]"> Funds Transfer </button>
 </div>

@@ -15,7 +15,7 @@ const routes: Routes = [
     path:'accounts', component: AccountManagementComponent
   }, 
   {
-    path:'payments', component: PaymentManagementComponent
+    path:'payments/:fromAccountID', component: PaymentManagementComponent
   }, 
   {
     path:'forex', component:ForexManagementComponent

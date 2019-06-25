@@ -1,8 +1,37 @@
 <div class="jumbotron" style="text-align: center; ">
     <h2>Welcome to Bank Management & Forex Services</h2>
+    
   </div>
-  
+  <hr>
+  <div style="text-align: center">
+  <a  routerLink="/">Home</a>
+</div>
+<hr>
 
-<p>
-  payment-management works!
-</p>
+  <div *ngIf="account" class="accounts">
+   
+    <div style="text-align: center">
+      Your current Balance is - <span style="font-weight: bold">{{account.balance | currency: 'INR':true}}</span>
+    </div>
+  
+  </div>
+
+  <div style="text-align: center">
+      
+    <div >
+      <label>From Account Number
+          {{account.accountId}}
+      </label><br>
+      <label>To Account Number:
+        <input [(ngModel)]="transaction.toAccountID" type="number" placeholder="Deposit To" required /> 
+      </label><br>
+      <label>Amount:
+        <input [(ngModel)]="transaction.transferAmnt" type="number" placeholder="Amount" required min="1" max="100000"/>
+      </label><br>
+      <label>Currency:
+        <input [(ngModel)]="transaction.currency" placeholder="Currency - Default INR"/>
+      </label><br>
+      
+    </div>
+    <button (click)="transferMoney()" class="btn btn-success">Transfer</button>
+  </div>

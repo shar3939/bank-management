@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'http://localhost:8100/accounts/accountID/123455';
+const endpoint = 'http://localhost:8765/bank-account-mgmt/accounts/accountID/123457';
 const httpOptions = {
       headers: new HttpHeaders({
       'Content-Type':  'application/json'
     })
 };
-const depositEndpoint = 'http://localhost:8100/accounts/deposit'; 
+const depositEndpoint = 'http://localhost:8765/bank-account-mgmt/accounts/deposit'; 
+const transferEndpoint = 'http://localhost:8765/payments-management/transfer'; 
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,15 @@ export class AccountsService {
       tap((transaction) => console.log(`added balance`)),
       catchError(this.handleError<any>('Transaction'))
     ); 
+  }
+
+  transferMoney(transaction): Observable<any> {
+    console.log(transaction);
+    console.log(httpOptions);
+    return this.http.post<any>(transferEndpoint, JSON.stringify(transaction), httpOptions).pipe(
+      tap((transaction) => console.log(`Transfer Done.!`)),
+      catchError(this.handleError<any>('Transfer Failed'))
+    );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
